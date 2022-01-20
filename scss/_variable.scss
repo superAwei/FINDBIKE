@@ -1,0 +1,38 @@
+//color
+$primary:#feff03;
+$dark: #0D0D0D;
+$light:#fff;
+$secondary_dark:#bfbfbf;
+$pos_primary:#4285f4;
+$pos_dark:rgba(0, 92, 240, 0.938);
+$pos_light:#cfe2ff;
+$map_color:#333432;
+
+
+
+//RWD
+$desktop:1366px;
+$laptop:1024px;
+$pad:768px;
+$phone:414px;
+
+@mixin desktop {
+    @media (min-width:$desktop) {
+        @content;
+    }
+}
+
+@mixin laptop {
+    @media (min-width:$laptop) {
+        @content;
+    }
+}
+
+@mixin pad {
+    @media (min-width:$pad) {
+        @content;
+    }
+}
+
+
+

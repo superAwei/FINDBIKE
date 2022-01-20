@@ -1,0 +1,195 @@
+@import "reset";
+@import "variable";
+
+#map {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    height: 100vh;
+    z-index:1;
+}
+
+.myPos{
+    display: block;
+    padding: 30px;
+    border-radius: 50%;
+    z-index: 999 !important;
+    margin-bottom: 30px;
+    // background-color:rgba($primary,0.2);
+    backdrop-filter : blur(6px);
+    background-image: url('/img/my_location.svg');
+    background-size: 60%;
+    background-position: center center;
+    background-repeat: no-repeat;
+  }
+// 我的位置
+.mylocation{
+  color:$light;
+}
+// 目前位置動畫
+.circle {
+  width: 30px;
+  height: 30px;
+  background-color: transparent;
+  position: absolute;
+  left: 50%;
+  margin-left: -25px;
+  top: 50%;
+  margin-top: -25px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  animation: radar 1s infinite;
+  -webkit-animation: radar 1s infinite;
+  -webkit-transition: all ease-in-out;
+  transition: all ease-in;
+  z-index: 9999 !important;
+    .pos{
+        position: absolute;
+        top:50%;
+        left:50%;
+        transform:translate(-50%,-50%);
+        width: 16px;
+        height: 16px;
+        border-radius:50%;
+        background-color: #4285f4;
+        border:1px solid #fff;
+    }
+}
+@keyframes radar {
+  1% {
+    width: 50px;
+    height: 50px;
+    margin-left: -25px;
+    margin-top: -25px;
+    border-color:$pos_primary;
+  }
+
+  30%{
+    width: 60px;
+    height: 60px;
+    margin-left: -30px;
+    margin-top: -30px;
+    background-color:rgba($pos_primary,0.1);
+    // border-color:$pos_primary;
+  }
+  100% {
+    width: 200px;
+    height: 200px;
+    margin-left: -100px;
+    margin-top: -100px;
+    // background-color:rgba($pos_dark,0.1);
+    border-color: rgba(66, 66, 66, 0.1);
+  }
+}
+
+
+.leaflet-popup-content-wrapper, .leaflet-popup-tip{
+  background-color: rgba(66, 66, 66, 0.1)!important;
+  backdrop-filter : blur(5px)!important;
+  box-shadow: #bbb;
+    .info_name{
+      font-size: 16px;
+      margin-bottom: 16px;
+      color:$light;
+    }
+    .info_card{
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      color:$dark;
+      margin-bottom: 16px;
+      .info_card_item{
+        white-space: nowrap;
+        background-color:rgba(0, 0, 0, 0.5);
+        backdrop-filter : blur(10px)!important;
+        display: flex;
+        align-items: center;
+        margin-right: 8px;
+        padding: 4px 8px;
+        margin: 6px;
+        border-radius: 6px;
+        color:$light;
+        .info_card_num{
+          font-size: 24px;
+          font-family: 'Archivo Black', sans-serif;
+          padding: 0px 8px;
+          color:$primary;
+        }
+      }
+    }
+    .navigation{
+      display: flex;
+      justify-content: center;
+      vertical-align: middle;
+      align-items: center;
+      text-decoration: none;
+      color:$dark;
+      padding: 8px;
+      background-color: $primary;
+      border-radius: 6px;
+      .material-icons{
+        margin-right: 8px;
+      }
+    }
+    
+  }
+
+// .leaflet-popup-content-wrapper{
+//   background-color: red;
+// }
+ 
+
+
+// // 目前所在位置動畫
+//   .circle {
+//    width: 50px;
+//    height: 50px;
+//    background-color: transparent;
+//    position: relative;
+//    left: 50%;
+//    margin-left: -25px;
+//    top: 50%;
+//    margin-top: -25px;
+//    border-radius: 50%;
+//    border: 2px solid transparent;
+//    animation: radar 2s infinite;
+//    -webkit-animation: radar 2s infinite;
+//    -webkit-transition: all ease-in-out;
+//    transition: all ease-in;
+//     // &::before{
+//     //    content: '';
+//     //    width: 20px;
+//     //    height: 20px;
+//     //    position:absolute;
+//     //    display: inline-block;
+//     //    color: red;
+//     //  }
+//  }
+ 
+ 
+//  @keyframes radar {
+//    1% {
+//      width: 10px;
+//      height: 10px;
+//      margin-left: -5px;
+//      margin-top: -5px;
+//      background-color: yellow;
+//      border-color: yellow;
+//    }
+//    20% {
+//      width:60px;
+//      height: 60px;
+//      margin-left: -30px;
+//      margin-top: -30px;
+//      border-color: green;
+//    }
+//    100% {
+//      width: 100px;
+//      height: 100px;
+//      margin-left: -50px;
+//      margin-top: -50px;
+//      border-color: transparent;
+     
+//    }
+//  }
+ 

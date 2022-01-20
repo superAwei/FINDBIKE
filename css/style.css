@@ -1,0 +1,239 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+blockquote, q {
+  quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+#map {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+  height: 100vh;
+  z-index: 1;
+}
+
+.myPos {
+  display: block;
+  padding: 30px;
+  border-radius: 50%;
+  z-index: 999 !important;
+  margin-bottom: 30px;
+  -webkit-backdrop-filter: blur(6px);
+          backdrop-filter: blur(6px);
+  background-image: url("/img/my_location.svg");
+  background-size: 60%;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+.mylocation {
+  color: #fff;
+}
+
+.circle {
+  width: 30px;
+  height: 30px;
+  background-color: transparent;
+  position: absolute;
+  left: 50%;
+  margin-left: -25px;
+  top: 50%;
+  margin-top: -25px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  animation: radar 1s infinite;
+  -webkit-animation: radar 1s infinite;
+  -webkit-transition: all ease-in-out;
+  -webkit-transition: all ease-in;
+  transition: all ease-in;
+  z-index: 9999 !important;
+}
+
+.circle .pos {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background-color: #4285f4;
+  border: 1px solid #fff;
+}
+
+@-webkit-keyframes radar {
+  1% {
+    width: 50px;
+    height: 50px;
+    margin-left: -25px;
+    margin-top: -25px;
+    border-color: #4285f4;
+  }
+  30% {
+    width: 60px;
+    height: 60px;
+    margin-left: -30px;
+    margin-top: -30px;
+    background-color: rgba(66, 133, 244, 0.1);
+  }
+  100% {
+    width: 200px;
+    height: 200px;
+    margin-left: -100px;
+    margin-top: -100px;
+    border-color: rgba(66, 66, 66, 0.1);
+  }
+}
+
+@keyframes radar {
+  1% {
+    width: 50px;
+    height: 50px;
+    margin-left: -25px;
+    margin-top: -25px;
+    border-color: #4285f4;
+  }
+  30% {
+    width: 60px;
+    height: 60px;
+    margin-left: -30px;
+    margin-top: -30px;
+    background-color: rgba(66, 133, 244, 0.1);
+  }
+  100% {
+    width: 200px;
+    height: 200px;
+    margin-left: -100px;
+    margin-top: -100px;
+    border-color: rgba(66, 66, 66, 0.1);
+  }
+}
+
+.leaflet-popup-content-wrapper, .leaflet-popup-tip {
+  background-color: rgba(66, 66, 66, 0.1) !important;
+  -webkit-backdrop-filter: blur(5px) !important;
+          backdrop-filter: blur(5px) !important;
+  -webkit-box-shadow: #bbb;
+          box-shadow: #bbb;
+}
+
+.leaflet-popup-content-wrapper .info_name, .leaflet-popup-tip .info_name {
+  font-size: 16px;
+  margin-bottom: 16px;
+  color: #fff;
+}
+
+.leaflet-popup-content-wrapper .info_card, .leaflet-popup-tip .info_card {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  font-size: 12px;
+  color: #0D0D0D;
+  margin-bottom: 16px;
+}
+
+.leaflet-popup-content-wrapper .info_card .info_card_item, .leaflet-popup-tip .info_card .info_card_item {
+  white-space: nowrap;
+  background-color: rgba(0, 0, 0, 0.5);
+  -webkit-backdrop-filter: blur(10px) !important;
+          backdrop-filter: blur(10px) !important;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-right: 8px;
+  padding: 4px 8px;
+  margin: 6px;
+  border-radius: 6px;
+  color: #fff;
+}
+
+.leaflet-popup-content-wrapper .info_card .info_card_item .info_card_num, .leaflet-popup-tip .info_card .info_card_item .info_card_num {
+  font-size: 24px;
+  font-family: 'Archivo Black', sans-serif;
+  padding: 0px 8px;
+  color: #feff03;
+}
+
+.leaflet-popup-content-wrapper .navigation, .leaflet-popup-tip .navigation {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  vertical-align: middle;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-decoration: none;
+  color: #0D0D0D;
+  padding: 8px;
+  background-color: #feff03;
+  border-radius: 6px;
+}
+
+.leaflet-popup-content-wrapper .navigation .material-icons, .leaflet-popup-tip .navigation .material-icons {
+  margin-right: 8px;
+}
+/*# sourceMappingURL=style.css.map */
