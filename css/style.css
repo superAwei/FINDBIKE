@@ -74,7 +74,7 @@ table {
   margin-bottom: 30px;
   -webkit-backdrop-filter: blur(6px);
           backdrop-filter: blur(6px);
-  background-image: url("img/my_location.svg");
+  background-image: url("/img/my_location_white_24dp.svg");
   background-size: 60%;
   background-position: center center;
   background-repeat: no-repeat;
@@ -252,8 +252,8 @@ label {
   width: 80px;
   height: 40px;
   background: #fffb0c;
-  -webkit-box-shadow: rgba(27, 27, 27, 0.5) 0px 0px 9px 0px inset;
-          box-shadow: rgba(27, 27, 27, 0.5) 0px 0px 9px 0px inset;
+  -webkit-box-shadow: rgba(27, 27, 27, 0.2) 0px 0px 10px 0px inset;
+          box-shadow: rgba(27, 27, 27, 0.2) 0px 0px 10px 0px inset;
   display: block;
   border-radius: 80px;
   position: absolute;
@@ -288,6 +288,6 @@ input:checked + label:after {
 }
 
 label:active:after {
-  width: 60px;
+  width: 30px;
 }
 /*# sourceMappingURL=style.css.map */

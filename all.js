@@ -34,7 +34,6 @@ const tileLayer = L.tileLayer(MapType, {
 let flag = false;
 
 switchMap.addEventListener("click", function () {
-  console.log('123')
     if (!flag) {
       tileLayer.setUrl(
         "https://api.mapbox.com/styles/v1/mapbox/satellite-v9/tiles/{z}/{x}/{y}?access_token={accessToken}"
@@ -104,7 +103,6 @@ function initMap(lat, lon) {
     .bindPopup("<h1 class='mylocation'>我的位置</h1>")
     .openPopup();
   map.on("moveend", function (ev) {
-    console.log(map.getCenter());
   });
 
 }
