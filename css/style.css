@@ -66,7 +66,7 @@ table {
   z-index: 1;
 }
 
-.myPos {
+#map .myPos {
   display: block;
   padding: 30px;
   border-radius: 50%;
@@ -74,10 +74,13 @@ table {
   margin-bottom: 30px;
   -webkit-backdrop-filter: blur(6px);
           backdrop-filter: blur(6px);
-  background-image: url("/img/my_location.svg");
+  background-image: url("img/my_location.svg");
   background-size: 60%;
   background-position: center center;
   background-repeat: no-repeat;
+  -webkit-box-shadow: #feff03 0px 0px 60px 0px;
+          box-shadow: #feff03 0px 0px 60px 0px;
+  background-color: #feff03;
 }
 
 .mylocation {
@@ -235,5 +238,56 @@ table {
 
 .leaflet-popup-content-wrapper .navigation .material-icons, .leaflet-popup-tip .navigation .material-icons {
   margin-right: 8px;
+}
+
+input[type=checkbox] {
+  height: 0;
+  width: 0;
+  visibility: hidden;
+}
+
+label {
+  cursor: pointer;
+  text-indent: -9999px;
+  width: 80px;
+  height: 40px;
+  background: #fffb0c;
+  -webkit-box-shadow: rgba(27, 27, 27, 0.5) 0px 0px 9px 0px inset;
+          box-shadow: rgba(27, 27, 27, 0.5) 0px 0px 9px 0px inset;
+  display: block;
+  border-radius: 80px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 999 !important;
+}
+
+label:after {
+  content: '';
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  width: 30px;
+  height: 30px;
+  background: #fff;
+  -webkit-box-shadow: rgba(59, 59, 59, 0.5) 0px 0px 12px 2px;
+          box-shadow: rgba(59, 59, 59, 0.5) 0px 0px 12px 2px;
+  border-radius: 90px;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+input:checked + label {
+  background: #333432;
+}
+
+input:checked + label:after {
+  left: calc(100% - 5px);
+  -webkit-transform: translateX(-100%);
+          transform: translateX(-100%);
+}
+
+label:active:after {
+  width: 60px;
 }
 /*# sourceMappingURL=style.css.map */

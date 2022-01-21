@@ -7,10 +7,46 @@ let filterData = [];
 let list = document.querySelector(".list");
 // 選取定位
 let myPos = document.querySelector(".myPos");
+
+//切換地圖按鈕
+let switchMap = document.querySelector("#switch");
 // 建立一個地圖變數
 let map,lat,lon;
+// 設定固定時間呼叫一次 API
+let updateAPI;
+
+// 建立變換地圖樣式
+let Mapid = "mapbox/dark-v10";
+// 建立更換地圖變數
+let MapType ="https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}";
 
 
+const tileLayer = L.tileLayer(MapType, {
+    attribution:
+      'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+    maxZoom: 18,
+    id: Mapid,
+    tileSize: 512,
+    zoomOffset: -1,
+    accessToken:
+      "pk.eyJ1IjoiYXdlaTE5ODgiLCJhIjoiY2t3OWJ1NHMwMG1zNjJuczN1cHJ1eTM3MyJ9.qnF6bc7O5WUySnldppAtew"
+});
+let flag = false;
+
+switchMap.addEventListener("click", function () {
+  console.log('123')
+    if (!flag) {
+      tileLayer.setUrl(
+        "https://api.mapbox.com/styles/v1/mapbox/satellite-v9/tiles/{z}/{x}/{y}?access_token={accessToken}"
+      );
+      flag = !flag;
+    } else {
+      flag = !flag;
+      tileLayer.setUrl(
+        "https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}"
+      );
+    }
+});
 // 點擊定位點回到目前位置
 myPos.addEventListener('click',function(){
     // 重新設定地圖位置，為目前所在位置座標
@@ -40,38 +76,21 @@ function getLocation() {
 //把 mapbox 地圖抓進來寫 mapbox 載入地圖函式
 function initMap(lat, lon) {
   map = L.map("map").setView([lat, lon], 16);
-  L.tileLayer(
-    "https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}",
-    {
-      attribution:
-        'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-      maxZoom: 18,
-      id: "mapbox/dark-v10",
-      tileSize: 512,
-      zoomOffset: -1,
-      accessToken:"pk.eyJ1IjoiYXdlaTE5ODgiLCJhIjoiY2t3OWJ1NHMwMG1zNjJuczN1cHJ1eTM3MyJ9.qnF6bc7O5WUySnldppAtew"
-    }
-  ).addTo(map);
+  tileLayer.addTo(map);
+  // L.tileLayer(
+  //   "https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}",
+  //   {
+  //     attribution:
+  //       'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+  //     maxZoom: 18,
+  //     id: "mapbox/dark-v10",
+  //     tileSize: 512,
+  //     zoomOffset: -1,
+  //     accessToken:"pk.eyJ1IjoiYXdlaTE5ODgiLCJhIjoiY2t3OWJ1NHMwMG1zNjJuczN1cHJ1eTM3MyJ9.qnF6bc7O5WUySnldppAtew"
+  //   }
+  // ).addTo(map);
 
-  // 顯示目前自己所在位置並客製化 icon
-  // var greenIcon = new L.Icon({
-  //   iconUrl:
-  //     "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png",
-  //   shadowUrl:
-  //     "https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png",
-  //   iconSize: [25, 41],
-  //   iconAnchor: [12, 41],
-  //   popupAnchor: [1, -34],
-  //   shadowSize: [41, 41]
-  // });
-
-  // L.marker([lat, lon], { icon: greenIcon })
-  //   .addTo(map)
-  //   .bindPopup("<h1>我的位置</h1>")
-  //   .openPopup();
-  // map.on("moveend", function (ev) {
-  //   console.log(map.getCenter());
-  // });
+  
   // 顯示目前自己所在位置並客製化 icon
   var myIcon = L.divIcon({
     className: 'circle',
@@ -118,11 +137,14 @@ function getstationinfo(lat, lon) {
     .then(function (response) {
       stationData = response.data;
       getavailableinfo(lat, lon);
+       //可以自行設定秒數，單位是毫秒
+       updateAPI = setInterval(() => getavailableinfo(lat, lon), 360000);
     });
 }
 
 // 再去接每個車站點的車位資訊
 function getavailableinfo(lat, lon) {
+  filterData = [];
   axios
     .get(
       `https://ptx.transportdata.tw/MOTC/v2/Bike/Availability/NearBy?%24spatialFilter=nearby(${lat}%2C%20${lon}%2C%201000)&%24format=JSON`,
@@ -148,10 +170,8 @@ function getavailableinfo(lat, lon) {
         });
       });
       // 把資料印在地圖上面
-      // render();
       // 把圖標都放在每個座標上
       filterData.forEach(function (item) {
-        console.log(item);
         L.marker([item.poslat, item.poslon], { icon: customStationIcon })
         .addTo(map)
         .bindPopup(`
@@ -183,7 +203,7 @@ function getavailableinfo(lat, lon) {
 //   });
 //   list.innerHTML = str;
 // }
-
+// render();
 // API 驗證機制
 function getAuthorizationHeader() {
   //  填入自己 ID、KEY 開始
