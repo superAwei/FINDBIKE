@@ -249,13 +249,13 @@ input[type=checkbox] {
 label {
   cursor: pointer;
   text-indent: -99999px;
-  width: 80px;
-  height: 40px;
+  width: 100px;
+  height: 50px;
   background: #fffb0c;
   -webkit-box-shadow: rgba(27, 27, 27, 0.2) 0px 0px 10px 0px inset;
           box-shadow: rgba(27, 27, 27, 0.2) 0px 0px 10px 0px inset;
   display: block;
-  border-radius: 80px;
+  border-radius: 90px;
   position: absolute;
   top: 10px;
   right: 10px;
@@ -267,8 +267,8 @@ label:after {
   position: absolute;
   top: 5px;
   left: 5px;
-  width: 30px;
-  height: 30px;
+  width: 60px;
+  height: 60px;
   background: #fff;
   -webkit-box-shadow: rgba(59, 59, 59, 0.5) 0px 0px 12px 2px;
           box-shadow: rgba(59, 59, 59, 0.5) 0px 0px 12px 2px;
@@ -288,6 +288,6 @@ input:checked + label:after {
 }
 
 label:active:after {
-  width: 30px;
+  width: 50px;
 }
 /*# sourceMappingURL=style.css.map */
